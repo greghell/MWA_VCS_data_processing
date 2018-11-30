@@ -1,18 +1,23 @@
-# plot average spectra and spectrogram of 1 antenna.
-# usage : python ant_plot.py fname nResol nAnt NumBlocks
-
 import sys
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import argparse
 
-fread = open(sys.argv[1],'rb')			# open first file of data set
+parser = argparse.ArgumentParser(description='Plots spectra and spectrograms of both polarization for one antenna for one .sub file')
+parser.add_argument('filename', help='indicate file name')
+parser.add_argument("nResol", type=int, help="spectral resolution (< 51200)")
+parser.add_argument("nAnt", type=int, help="antenna number (0-127)")
+parser.add_argument("-nBlocks", type=int, help="number of data blocks to process (< 200)", default = 200)
+args = parser.parse_args()
+
+fread = open(args.filename,'rb')			# open first file of data set
 
 nChanSize = 51200
-nBloks = int(sys.argv[4])
+nBloks = int(args.nBlocks)
 nPols = 2
-nResol = int(sys.argv[2])
-nAnt = int(sys.argv[3])
+nResol = int(args.nResol)
+nAnt = int(args.nAnt)
 specgram = np.zeros((nResol,nBloks,nPols))
 TotnSam = 0
 

@@ -1,17 +1,23 @@
-# quicky.py filename resolution nBlocks
-# gives a quick snapshot of the content of a sub file
-
 import sys
 import numpy as np
 from numpy import linalg as LA
 import math
 import matplotlib.pyplot as plt
+import argparse
 
-fname = sys.argv[1]
-nResol = int(sys.argv[2])
+parser = argparse.ArgumentParser(description='Plots spectra of all antennas and eigen values of correlation matrix')
+parser.add_argument('filename', help='indicate file name')
+parser.add_argument("-nResol", type=int, help="spectral resolution (< 51200)", default = 1024)
+parser.add_argument("-nBlocks", type=int, help="number of data blocks to process (< 200)", default = 200)
+args = parser.parse_args()
 
 
-nTotBlocks = int(sys.argv[3])
+
+fname = args.filename
+nResol = int(args.nResol)
+
+
+nTotBlocks = int(args.nBlocks)
 nTotAnts = 128
 nTotPols = 2
 nChanSize = 51200

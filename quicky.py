@@ -93,6 +93,9 @@ plt.xlabel('Eigenvalue number')
 plt.ylabel('Eigen value [dB]')
 plt.title('polarization 1')
 
+figure = plt.gcf() # get current figure
+figure.set_size_inches(18, 9)
+
 if args.show:
 	plt.show()
 plt.savefig("./all_files_analysis/"+fname+".png")

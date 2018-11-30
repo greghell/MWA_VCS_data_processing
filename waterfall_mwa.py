@@ -6,7 +6,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Plots spectra and spectrograms of both polarization for one antenna for one .sub file')
 parser.add_argument('filename', help='indicate file name')
-parser.add_argument("nResol", type=int, help="spectral resolution (< 51200)")
+parser.add_argument("-nResol", type=int, help="spectral resolution (< 51200)", default = 1024)
 parser.add_argument("nAnt", type=int, help="antenna number (0-127)")
 parser.add_argument("-nBlocks", type=int, help="number of data blocks to process (< 200)", default = 200)
 args = parser.parse_args()

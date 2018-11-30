@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser(description='Plots spectra of all antennas and 
 parser.add_argument('filename', help='indicate file name')
 parser.add_argument("-nResol", type=int, help="spectral resolution (< 51200)", default = 1024)
 parser.add_argument("-nBlocks", type=int, help="number of data blocks to process (< 200)", default = 200)
+parser.add_argument("-show", help="show plot before saving it",action="store_true")
 args = parser.parse_args()
 
 
@@ -92,4 +93,7 @@ plt.xlabel('Eigenvalue number')
 plt.ylabel('Eigen value [dB]')
 plt.title('polarization 1')
 
-plt.show()
+if args.show:
+	plt.show()
+plt.savefig("./all_files_analysis/"+fname+".png")
+plt.close()

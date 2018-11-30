@@ -42,7 +42,7 @@ for nblock in range(nTotBlocks):
 			spec = np.reshape(sigCom[0:int(math.floor(int(nChanSize)/nResol)*nResol)],(nResol,int(math.floor(int(nChanSize)/nResol))), order='F')
 			spec = np.abs(np.fft.fft(spec,axis=0))**2
 
-			specgram[:,nAnt,nPol] = specgram[:,nAnt,nPol] + (1/nTotBlocks) * np.mean(spec,axis=1)
+			specgram[:,nAnt,nPol] = specgram[:,nAnt,nPol] + (1/nTotBlocks) * np.fft.fftshift(np.mean(spec,axis=1))
 		Rs[:,:,nPol] = Rs[:,:,nPol] + (1/nTotBlocks) * np.inner(AntsSigs,np.conjugate(AntsSigs))
 
 
